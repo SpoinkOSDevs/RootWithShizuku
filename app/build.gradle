@@ -3,12 +3,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
-
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.app.androidunlocker"
-        minSdk 24
-        targetSdk 31
+        minSdkVersion 24
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
@@ -19,20 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
+    implementation 'moe.shizuku.privileged.api:api:0.3.2'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-
-    // Add other dependencies as needed
-
-    // Shizuku dependencies
-    implementation 'dev.rikka.shizuku:api:13.1.5'
-    implementation 'dev.rikka.shizuku:provider:13.1.5'
 }
