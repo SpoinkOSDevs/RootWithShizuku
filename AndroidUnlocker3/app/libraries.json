@@ -1,0 +1,72 @@
+[
+  {
+    "artifactId": "appcompat",
+    "excludes": [],
+    "groupId": "androidx.appcompat",
+    "scope": "compile",
+    "versionName": "1.3.1"
+  },
+  {
+    "artifactId": "material",
+    "excludes": [],
+    "groupId": "com.google.android.material",
+    "scope": "compile",
+    "versionName": "1.4.0"
+  },
+  {
+    "artifactId": "constraintlayout",
+    "excludes": [],
+    "groupId": "androidx.constraintlayout",
+    "scope": "compile",
+    "versionName": "2.1.0"
+  },
+  {
+    "artifactId": "core-ktx",
+    "excludes": [],
+    "groupId": "androidx.core",
+    "scope": "compile",
+    "versionName": "1.70"
+  },
+  {
+    "artifactId": "appcompat",
+    "excludes": [],
+    "groupId": "androidx.appcompat",
+    "versionName": "1.4.0"
+  },
+  {
+    "artifactId": "material",
+    "excludes": [],
+    "groupId": "com.google.android.material",
+    "versionName": "1.4.0"
+  },
+  {
+    "artifactId": "constraintlayout",
+    "excludes": [],
+    "groupId": "androidx.constraintlayout",
+    "versionName": "2.1.0"
+  },
+  {
+    "artifactId": "shizuku-api",
+    "excludes": [],
+    "groupId": "moe.shizuku.privileged.api",
+    "versionName": "13.0.2"
+  },
+  {
+    "artifactId": "shizuku-binder-wrapper",
+    "excludes": [],
+    "groupId": "moe.shizuku.privileged.api",
+    "versionName": "13.0.2"
+  },
+  {
+    "artifactId": "api",
+    "excludes": [],
+    "groupId": "dev.rikka.shizuku",
+    "versionName": "13.1.5"
+  },
+  {
+    "artifactId": "binder",
+    "excludes": [],
+    "groupId": "dev.rikka.shizuku",
+    "versionName": "13.1.5"
+  }
+]
