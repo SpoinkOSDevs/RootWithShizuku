@@ -6,9 +6,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import dev.rikka.shizuku.api;
-
-import java.io.IOException;
+import moe.shizuku.api.Shizuku;
+import moe.shizuku.api.ShizukuBinderWrapper;
+import moe.shizuku.api.ShizukuProvider;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestShizukuPermissions() {
-        Intent shizukuIntent = new Intent("rikka.shizuku.intent.action.REQUEST_PERMISSIONS");
-        shizukuIntent.setPackage("rikka.shizuku.privileged.api");
-        shizukuIntent.putExtra("rikka.shizuku.intent.extra.REQUEST_PERMISSIONS", new String[]{
-                "rikka.shizuku.manager.permission.API"
+        Intent shizukuIntent = new Intent("moe.shizuku.privileged.api.intent.action.REQUEST_PERMISSIONS");
+        shizukuIntent.setPackage("moe.shizuku.privileged.api");
+        shizukuIntent.putExtra("moe.shizuku.intent.extra.REQUEST_PERMISSIONS", new String[]{
+                "moe.shizuku.manager.permission.API"
         });
 
         startActivityForResult(shizukuIntent, SHIZUKU_REQUEST_CODE);
@@ -71,14 +71,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void executeRootingTasks() {
-        // SELinux Bypass
+        // Request Shizuku to execute commands as the Shizuku user
         executeShizukuCommand("setenforce 0");
-
-        // Copy SU binary to /data/local/tmp
         executeShizukuCommand("cp /storage/emulated/0/su /data/local/tmp/su");
         executeShizukuCommand("chmod +x /data/local/tmp/su");
-
-        // Copy SU binary from /data/local/tmp to /system/xbin
         executeShizukuCommand("cp /data/local/tmp/su /system/xbin/su");
         executeShizukuCommand("chmod 6755 /system/xbin/su");
 
@@ -90,10 +86,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void executeShizukuCommand(String command) {
         try {
-            Shizuku.executeCommand(command);
-        } catch (IOException e) {
+            ShizukuBinderWrapper binderWrapper = Shizuku.getBinderWrapper();
+            if (binderWrapper != null) {
+                binderWrapper.transact(ShizukuProvider.TRANSACTION_execute, command, null, 0);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-            statusTextView.setText("Error executing command: " + e.getMessage());
+            statusTextView.setText("Error communicating with Shizuku: " + e.getMessage());
         }
     }
 
