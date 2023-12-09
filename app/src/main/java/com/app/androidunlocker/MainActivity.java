@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import dev.rikka.shizuku.Shizuku;
+import dev.rikka.shizuku.api;
 
 import java.io.IOException;
 
